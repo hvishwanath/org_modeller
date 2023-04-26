@@ -16,7 +16,6 @@ def process_org_model(model_file):
     pre_e = ""
     msg = list()
     toc = list()
-    msg.append("toc")
     with open(model_file) as f:
         om = yaml.safe_load(f)
         og = OrgGraph(om)
