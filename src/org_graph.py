@@ -1,5 +1,6 @@
 import igraph as ig
 import logging
+from pprint import pprint
 
 
 class OrgGraph(object):
@@ -93,23 +94,27 @@ class OrgGraph(object):
                     el.append(
                         {"source": person, "target": parent, "type": "reports_to"}
                     )
+                    
+                    # In this case, parent automatically assumes the role of an em
+                    self.members[parent]["role"] = "em"
 
                 if v:
                     self._iter_dict(v, person, el)
         return el
-
+    
     def _parse_org_models(self):
         # Recursively iterate org_model dict (model["data"]) to produce edges
 
         for model in self._org_model["org_models"]:
             model_name = model["name"]
             md = model["data"]
-            el = self._iter_dict(md, parent=None, el=[])
-            logging.debug(f"Building model for {model_name}")
-            logging.debug(f"Length of edge list : {len(el)}")
+            el = self._iter_dict(md, parent=None, el=[])            
             vl = list()
             for d in (self.members, self.teams, self.areas):
                 vl.extend([d[k] for k in d])
+
+            logging.debug(f"Building model for {model_name}")
+            logging.debug(f"Length of edge list : {len(el)}")
             g = ig.Graph.DictList(vl, el, directed=True)
             g["senior_ic_levels"] = self.senior_ic_levels
             g["org_name"] = self.org_name

@@ -1,4 +1,6 @@
-def print_tree(g, root, msg="", markerStr="+- ", levelMarkers=[]):
+import logging 
+
+def print_tree(g, root, msg="", markerStr="+- ", levelMarkers=[], seen=[]):
     """
     Recursive function that prints the hierarchical structure of a tree including markers that indicate
     parent-child relationships between nodes.

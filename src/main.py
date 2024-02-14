@@ -21,24 +21,26 @@ def process_org_model(model_file):
         og = OrgGraph(om)
         for k, v in og.models.items():
             header = f"Model Analysis: {k}"
-
+            mod_h = header.lower().replace(" ", "-").replace("`", "")
+            
             toc.append(
-                f'- [{header}](#{header.lower().replace(" ", "-").replace("`","")})'
+                f'- [{header}](#{mod_h})'
             )
 
-            msg.append(f"# {header}")
-            logging.debug(f"Graph ID: {v}")
+            msg.append(f"# {header} <a name='{mod_h}'></a>")
+            
+            #logging.debug(f"Graph ID: {v}")
             # print_msg_box(msg=f"Analyzing model {k}")
             oa = OrgGraphAnalyzer(v)
             oa.analyze()
             for a in oa.analysis:
-                toc.append(f'  - [{a}](#{a.lower().replace(" ", "-").replace("`","")})')
-                msg.append(f"## {a}")
+                a_h = mod_h + a.lower().replace(" ", "-").replace("`", "")
+                toc.append(f'  - [{a}](#{a_h})')
+                msg.append(f"## {a} <a name='{a_h}'></a>")
                 for k, v in oa.analysis[a].items():
-                    msg.append(f"### {k}")
-                    # toc.append(
-                    # f'    - [{k}](#{k.lower().replace(" ", "-").replace("`","")})'
-                    # )
+                    # k_h = a_h + k.lower().replace(" ", "-").replace("`", "")
+                    # msg.append(f"### {k} <a name='{k_h}'></a>")
+                    # toc.append(f'    - [{k}](#{k_h})')
                     if isinstance(v, str) or isinstance(v, int):
                         if "Reporting" in k:
                             msg.append(f"```\n{v}\n```")
@@ -48,12 +50,11 @@ def process_org_model(model_file):
                         msg.append(
                             f'\n{pre_b}{tabulate(v, headers="firstrow", tablefmt="github")}{pre_e}\n'
                         )
-    # print("\n".join(msg))
     print("\n".join(toc))
     print("\n".join(msg))
 
 
 if "__main__" == __name__:
-    logging.basicConfig(stream=sys.stdout, level=logging.ERROR)
+    logging.basicConfig(stream=sys.stderr, level=logging.DEBUG)
     logging.info(f"Starting analysis of {sys.argv[1]}")
     process_org_model(model_file=sys.argv[1])

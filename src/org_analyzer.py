@@ -30,10 +30,15 @@ class OrgGraphAnalyzer(object):
                 if not self._graph.are_connected(edge["source"], team["name"]):
                     return False
 
-                if not self._graph.are_connected(edge["target"], team["name"]):
-                    return False
+                # if not self._graph.are_connected(edge["target"], team["name"]):
+                #     return False
+
+                # logging.debug(f'Team: {team["name"]}, Edge: {edge}')
+                return True
+                
             if edge["type"] != "reports_to":
                 return False
+            
             return True
 
         top_key = f"Team `{team['name']}` Stats" if team else "Org Stats"
@@ -43,6 +48,7 @@ class OrgGraphAnalyzer(object):
         )
 
         self._analysis[top_key] = {"Reporting": print_tree(g=g_sub, root=0)}
+
         all_levels = list(set(g_sub.vs["level"]))
         all_regions = list(set(g_sub.vs["geo"]))
         all_genders = list(set(g_sub.vs["gender"]))
@@ -55,8 +61,22 @@ class OrgGraphAnalyzer(object):
         region_dict = defaultdict(dict)
         role_dict = defaultdict(int)
 
-        people = g_sub.vs(type_eq="person")
+        def vertex_selector(vx):
+            v = self._graph.vs(name_eq=vx["name"])[0]
+            if not v["type"] == "person":
+                return False
+            
+            if team:
+                logging.debug(f"Vertex: {v}, team: {team}")
+                logging.debug(f"Are connected: {self._graph.are_connected(v, team)}")
+                return self._graph.are_connected(v, team)
+            
+            return True
+        
+        people = g_sub.vs.select(lambda v: vertex_selector(v))
+
         total_in_org = len(people)
+        logging.debug(f"Total in org: {total_in_org}")
         self._analysis[top_key]["Total Size"] = total_in_org
 
         # Level distribution
