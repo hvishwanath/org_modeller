@@ -88,9 +88,14 @@ class OrgGraph(object):
 
                 # Add belongs_to edges for teams
                 el.append({"source": person, "target": team, "type": "belongs_to"})
+                # Also add this as a property for the vertex
+                if "team" not in self.members[person]:
+                    self.members[person]["team"] = [team]
+                elif team not in self.members[person]["team"]:
+                    self.members[person]["team"].append(team)
 
                 # Add reports_to edge to parent
-                if parent:
+                if parent and not person == parent:
                     el.append(
                         {"source": person, "target": parent, "type": "reports_to"}
                     )

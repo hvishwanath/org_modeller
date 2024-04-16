@@ -1,0 +1,149 @@
+# https://docs.google.com/spreadsheets/d/16g6o0hyPcdWItBB7r3PGvMnR9-S4fOcW6horMmNOC3s/edit#gid=1866730459
+
+description: My organization
+config:
+  senior_ic_levels: l5a, l5b, l6a, l6b
+  org_name: MyOrg
+members:
+  schema: name, level, geo, role, gender
+  data:
+    - adam, l6a, us-prime, em, male
+    - randon, l5a, us-prime, ic, male
+    - don, l5b, us-prime, ic, female
+    - janet, l4, us-prime, ic, female
+    - mary, l2, us-prime, ic, female
+    - mandy, l2, canada, ic, male
+    - krish, l4, us-prime, ic, male
+    - tamara, l2, us-prime, ic, female
+    - yenbo, l3, us-prime, ic, male
+    - kate, l5b, us-non-prime, ic, male
+    - rambo, l6a, emea, ic, female
+    - sanjay, l4, us-prime, ic, female
+    - cheerio, l5a, us-prime, ic, male
+    - harry, l2, us-prime, ic, male
+    - andrez, l4, us-prime, ic, male
+    - newbee, l2, canada, ic, ?
+    - joshua, l3, canada, ic, ?
+    - samy, l5b, us-prime, em, male
+    - pandora, l5b, us-non-prime, ic, male
+    - akira, l2, us-prime, ic, female
+    - javier, l5b, us-prime, ic, male
+    - rhonda, l5b, us-non-prime, ic, male
+    - lily, l3, us-prime, ic, male
+    - harriet, l2, us-non-prime, ic, female
+    - clara, l6a, us-prime, ic, male
+    - john, l2, us-prime, ic, male
+    - adelle, l5b, us-prime, ic, male
+    - suv, l5b, india, em, male
+    - swan, l5a, emea, ic, male
+    - daniel, l3, emea, ic, male
+    - greg, l4, emea, ic, male
+    - amandada, l2, india, ic, male
+    - raj, l3, india, ic, male
+    - lopez, l4, india, ic, male
+    - drumroll, l5a, india, ic, male
+    - thor, l2, india, ic, male
+    - jude, l4, india, ic, male
+    - phit, l3, india, ic, male
+    - bhasha, l2, india, ic, male
+    - marsh, l3, india, ic, male
+    - wine, l3, india, ic, male
+
+teams:
+  schema: name
+  data:
+    - myorg
+    - myorg/team1
+    - myorg/team2
+    - myorg/team3
+    - myorg/team4
+org_models:
+  - name: Current
+    schema: name, team, areas
+    data:
+      adam, myorg:
+        clara, myorg/team2, area2:
+        rambo, myorg/team1, area1:
+        adelle, myorg/team3, area3:
+        suv, myorg/team3, area3:
+          swan, myorg/team3, area3:
+          raj, myorg/team3, area3:
+          amandada, myorg/team3, area3:
+          lopez, myorg/team3, area3:
+          daniel, myorg/team3, area3:
+          drumroll, myorg/team3, area3:
+          greg, myorg/team3, area3:
+          thor, myorg/team3, area3:
+          phit, myorg/team3, area3:
+          bhasha, myorg/team3, area3:
+          marsh, myorg/team3, area3:
+          wine, myorg/team3, area3:
+        samy, myorg/team2, area2:
+          javier, myorg/team2, a1, a2:
+          rhonda, myorg/team2, a1, a2:
+          akira, myorg/team2, a2:
+          lily, myorg/team2, a2:
+          harriet, myorg/team2:
+          john, myorg/team2:
+          pandora, myorg/team2:
+        adam, myorg/team1:
+          cheerio, myorg/team1, ala5:
+          sanjay, myorg/team1, ala5:
+          kate, myorg/team1, ala5:
+          harry, myorg/team1, ala5:
+          andrez, myorg/team1, ala5:
+          joshua, myorg/team1, ala5:
+          newbee, myorg/team1, ala5:
+        adam, myorg/team4:
+          yenbo, myorg/team4, team4:
+          don, myorg/team4, team4:
+          randon, myorg/team4, team4:
+          mary, myorg/team4, ala6:
+          mandy, myorg/team4, team4:
+          krish, myorg/team4, ala6:
+          tamara, myorg/team4, team4:
+          janet, myorg/team4, ala6:
+  - name: EM_TEAM1
+    schema: name, team, areas
+    data:
+      adam, myorg:
+        clara, myorg/team2, team2:
+        rambo, myorg/team1, team1:
+        adelle, myorg/team3, team3:
+        cheerio, myorg/team1, ala5:
+        kate, myorg/team1, ala5:
+        suv, myorg/team3, team3:
+          swan, myorg/team3, team3:
+          raj, myorg/team3, team3:
+          amandada, myorg/team3, team3:
+          lopez, myorg/team3, team3:
+          daniel, myorg/team3, team3:
+          drumroll, myorg/team3, team3:
+          greg, myorg/team3, team3:
+          thor, myorg/team3, team3:
+          phit, myorg/team3, team3:
+          bhasha, myorg/team3, team3:
+          marsh, myorg/team3, team3:
+          wine, myorg/team3, team3:
+        samy, myorg/team2, team2:
+          javier, myorg/team2, ala7:
+          rhonda, myorg/team2, ala8, operations:
+          akira, myorg/team2, ala8:
+          lily, myorg/team2, operations, ala8:
+          harriet, myorg/team2:
+          john, myorg/team2:
+          pandora, myorg/team2:
+        sanjay, myorg/team1:
+          newbee, myorg/team1, ala5:
+          joshua, myorg/team1, ala5:
+          harry, myorg/team1, ala5:
+          andrez, myorg/team1, ala5:
+        adam, myorg/team4:
+          yenbo, myorg/team4, team4:
+          don, myorg/team4, team4:
+          randon, myorg/team4, team4:
+          mary, myorg/team4, ala6:
+          mandy, myorg/team4, team4:
+          krish, myorg/team4, ala6:
+          tamara, myorg/team4, team4:
+          janet, myorg/team4, ala6:

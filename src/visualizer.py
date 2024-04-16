@@ -59,7 +59,7 @@ def print_tree(g, root, msg="", markerStr="+- ", levelMarkers=[], seen=[]):
     markers = "".join(map(mapper, levelMarkers[:-1]))
     markers += markerStr if level > 0 else ""
     # print(f"{markers}{g.vs[root]['name']}")
-    msg = msg + f"{markers}{g.vs[root]['name']}\n"
+    msg = msg + f"{markers}{g.vs[root]['name']} {g.vs[root]['team']}\n"
 
     # After root has been printed, recurse down (depth-first) the child nodes.
     for i, child in enumerate(g.neighbors(root, mode="in")):

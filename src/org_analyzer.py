@@ -30,10 +30,6 @@ class OrgGraphAnalyzer(object):
                 if not self._graph.are_connected(edge["source"], team["name"]):
                     return False
 
-                # if not self._graph.are_connected(edge["target"], team["name"]):
-                #     return False
-
-                # logging.debug(f'Team: {team["name"]}, Edge: {edge}')
                 return True
                 
             if edge["type"] != "reports_to":
